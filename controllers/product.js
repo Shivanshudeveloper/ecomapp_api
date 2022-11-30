@@ -6,15 +6,27 @@ const addProduct = async (req, res) => {
         name,
         category,
         price,
+        product_code,
+        weight,
+        length,
+        diameter,
+        material,
+        color,
         stocks,
         description,
         available,
-        userId
+        userId,
     } = req.body;
     
     const newProduct = new Product_Model({
       name,
       category,
+      product_code,
+      weight,
+      length,
+      diameter,
+      material,
+      color,
       price,
       stocks,
       description,
@@ -48,15 +60,16 @@ const getProduct=async(req,res)=>{
 
 const getAllProducts=async (req, res) => {
     res.setHeader("Content-Type", "application/json");
-      Product_Model.find({ userId: req.params.userId })
+      Product_Model.find({ userId: req.params.userId }).sort({ createdAt: -1 })
         .then((p) => res.status(200).json(p))
         .catch((error) => res.status(400).json(error));
 };
 
 const updateProduct=async (req, res) => {
-    const {name, category,price, stocks, description, available } = req.body;
-    Product_Model.updateOne({ _id: req.params.proId }, { $set: {name: name, category: category, price: price,stocks: stocks, description: description, available: available } })
+    const {name, category,product_code,weight,diameter,material,color,price, stocks, description, available } = req.body;
+    Product_Model.updateOne({ _id: req.params.proId }, { $set: {name: name, category: category,product_code:product_code,weight:weight,diameter:diameter,material:material,color:color, price: price,stocks: stocks, description: description, available: available } })
         .then((data) => {
+            console.log(req.body);
             res.status(200).json({ status: true, message:"Product Updated"});
         })
         .catch((err) => console.log(err));

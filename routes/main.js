@@ -28,6 +28,8 @@ const usersController = require('../controllers/users');
 
 const productController= require('../controllers/product');
 
+const categoryController= require('../controllers/category');
+
 
 router.get('/test', (req, res) => {
   res.send('Working');
@@ -99,5 +101,12 @@ router.get('/getproduct/:proId/:userId',productController.getProduct);
 router.get('/getallproducts/:userId',productController.getAllProducts);
 router.put('/updateproduct/:proId/:userId',productController.updateProduct);
 router.delete('/deleteproduct/:proId/:userId',productController.deleteProduct);
+
+//---Category---
+router.post('/addcategory',categoryController.addCategory);
+router.get('/getcategory/:catId/:userId',categoryController.getCategory);
+router.get('/getallcategories/:userId',categoryController.getAllCategories);
+router.put('/updatecategory/:catId/:userId',categoryController.updateCategory);
+router.delete('/deletecategory/:catId/:userId',categoryController.deleteCategory);
 
 module.exports = router;
