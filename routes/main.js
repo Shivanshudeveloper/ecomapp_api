@@ -30,6 +30,9 @@ const productController= require('../controllers/product');
 
 const categoryController= require('../controllers/category');
 
+const adminProductController = require('../controllers/adminProduct');
+const adminOrderedProductController = require('../controllers/adminOrderedProduct');
+
 
 router.get('/test', (req, res) => {
   res.send('Working');
@@ -102,11 +105,24 @@ router.get('/getallproducts/:userId',productController.getAllProducts);
 router.put('/updateproduct/:proId/:userId',productController.updateProduct);
 router.delete('/deleteproduct/:proId/:userId',productController.deleteProduct);
 
+//-- Admin Product-------
+router.post('/addAdminProduct',adminProductController.addAdminProduct);
+router.get('/getAdminProduct/:proId/:adminId',adminProductController.getAdminProduct);
+router.get('/getallAdminProducts/:adminId',adminProductController.getAllAdminProducts);
+router.get('/getallAdminProductsOfCategory/:adminId/:category/:name',adminProductController.getAllProdOfACategory);
+router.put('/updateAdminProduct/:proId/:adminId',adminProductController.updateAdminProduct);
+router.delete('/deleteAdminProduct/:proId/:adminId',adminProductController.deleteAdminProduct);
+
 //---Category---
 router.post('/addcategory',categoryController.addCategory);
 router.get('/getcategory/:catId/:userId',categoryController.getCategory);
 router.get('/getallcategories/:userId',categoryController.getAllCategories);
 router.put('/updatecategory/:catId/:userId',categoryController.updateCategory);
 router.delete('/deletecategory/:catId/:userId',categoryController.deleteCategory);
+
+
+//adminOrdered
+router.post('/addAdminOrderedProduct',adminOrderedProductController.addAdminOrderedProduct);
+router.get('/getAdminOrderedProduct',adminOrderedProductController.getAdminOrderedProduct);
 
 module.exports = router;

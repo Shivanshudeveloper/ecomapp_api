@@ -1,0 +1,63 @@
+const mongoose = require("mongoose");
+
+const adminProductSchema = new mongoose.Schema({
+  name:{
+    type:String,
+    required:true
+  },
+  category:{
+    type:String,
+    required:true,
+  },
+  product_code:{
+    type:String,
+    required:true,
+  },
+  weight:{
+    type:String,
+    required:true,
+  },
+  length:{
+    type:String,
+    required:true,
+  },
+  diameter:{
+    type:String,
+    required:true,
+  },
+  material:{
+    type:String,
+    required:true
+  },
+  color:{
+    type:String,
+    requiredd:true,
+  },
+  price:{
+    type:Number,
+    required:true,
+  },
+  stocks:{
+    type:Number,
+    required:false,
+  },
+  description:{
+    type:String,
+    required:false,
+  },
+  available:{
+    type:Boolean,
+    required:true,
+    default:false,
+  },
+  adminId:{
+    type:String,
+    required:true,
+  },
+  createdAt:{
+    type:Date,
+    default:Date.now,
+  }
+});
+const adminProduct = mongoose.model("adminProduct", adminProductSchema);
+module.exports = adminProduct;
