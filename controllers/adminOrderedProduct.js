@@ -20,7 +20,18 @@ const addAdminOrderedProduct = async (req, res) => {
         productName,
         color,
         cost,
-        qty} = req.body;
+        BillingAddress,
+        CompanyName,
+        CompanyWebsite,
+        qty,
+        category,
+description,
+diameter,
+length,
+material,
+weight,
+stocks,
+    } = req.body;
 
     const adminOrderedProduct = new adminOrderedProduct_Model({ fname,
         lname,
@@ -28,7 +39,17 @@ const addAdminOrderedProduct = async (req, res) => {
         productName,
         color,
         cost,
-        qty })
+        BillingAddress,
+        CompanyName,
+        CompanyWebsite,
+        qty,
+        category,
+        description,
+        diameter,
+        length,
+        material,
+        weight,
+        stocks, })
 
     try {
         await adminOrderedProduct.save();

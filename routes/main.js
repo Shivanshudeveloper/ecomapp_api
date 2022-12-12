@@ -32,7 +32,8 @@ const categoryController= require('../controllers/category');
 
 const adminProductController = require('../controllers/adminProduct');
 const adminOrderedProductController = require('../controllers/adminOrderedProduct');
-
+const CustomerController =require('../controllers/Customer');
+const OwnerController =require('../controllers/Owner');
 
 router.get('/test', (req, res) => {
   res.send('Working');
@@ -124,5 +125,14 @@ router.delete('/deletecategory/:catId/:userId',categoryController.deleteCategory
 //adminOrdered
 router.post('/addAdminOrderedProduct',adminOrderedProductController.addAdminOrderedProduct);
 router.get('/getAdminOrderedProduct',adminOrderedProductController.getAdminOrderedProduct);
+
+
+//customer 
+router.post('/CustomerRegister',CustomerController.Customerregister);
+router.post('/CustomerLogin',CustomerController.Customerlogin);
+
+//owner
+router.post('/OwnerLogin',OwnerController.Ownerlogin);
+router.post('/OwnerRegister',OwnerController.Ownerregister);
 
 module.exports = router;

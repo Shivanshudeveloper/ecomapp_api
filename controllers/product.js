@@ -16,6 +16,7 @@ const addProduct = async (req, res) => {
         description,
         available,
         userId,
+        img
     } = req.body;
     console.log(req.body);
     
@@ -32,7 +33,8 @@ const addProduct = async (req, res) => {
       stocks,
       description,
       available,
-      userId
+      userId,
+      img
     })
     newProduct.save()
     .then((data)=>{
