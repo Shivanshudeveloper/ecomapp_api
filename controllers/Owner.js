@@ -1,4 +1,4 @@
-const Owner = require('../models/Owner');
+const Owner = require('../models/owner');
 // import Owner from '../models/Owner';
 // import express from 'express';
 // import mongoose from 'mongoose';
