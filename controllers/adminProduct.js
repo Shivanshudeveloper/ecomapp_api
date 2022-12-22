@@ -16,6 +16,7 @@ const addAdminProduct = async (req, res) => {
         description,
         available,
         adminId,
+        img
     } = req.body;
     console.log(req.body);
     
@@ -32,7 +33,8 @@ const addAdminProduct = async (req, res) => {
       stocks,
       description,
       available,
-      adminId
+      adminId,
+      img
     })
     newAdminProduct.save()
     .then((data)=>{
@@ -65,7 +67,36 @@ const getAllAdminProducts=async (req, res) => {
         .then((p) => res.status(200).json(p))
         .catch((error) => res.status(400).json(error));
 };
-
+const getSearchedAdminProduct=async (req, res) => {
+  // let param= req.query.search 
+  console.log(req.params.search)     
+  adminProduct_Model.find({ adminId: req.params.adminId  ,name: req.params.search }).sort({ createdAt: -1 })
+          .then((p) =>{
+  
+              console.log(p)
+              res.status(200).json(p)
+          }
+          )
+          .catch((error) => {
+              console.log(error)
+              res.status(400).json(error)}
+              );
+  };
+  const getSearchedAdminCategoryProduct=async (req, res) => {
+    // let param= req.query.search 
+    console.log(req.params.search)     
+    adminProduct_Model.find({ adminId: req.params.adminId  ,name: req.params.search , category:req.params.category}).sort({ createdAt: -1 })
+            .then((p) =>{
+    
+                console.log(p)
+                res.status(200).json(p)
+            }
+            )
+            .catch((error) => {
+                console.log(error)
+                res.status(400).json(error)}
+                );
+    };
 const getAllProdOfACategory = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
       var category={};
@@ -103,6 +134,19 @@ const deleteAdminProduct = async (req, res) => {
         })
         .catch((err) => console.log(err));
 }
+const countAdminProduct=async(req,res)=>{
+    try {
+   const c=await     adminProduct_Model.countDocuments({})
+            // console.log(c)
+        res.status(200).json(c);
+           
+      
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({ message: error.message });
+    }
+   
+}
 
 module.exports={
     addAdminProduct,
@@ -110,5 +154,8 @@ module.exports={
     getAllAdminProducts,
     getAllProdOfACategory,
     updateAdminProduct,
-    deleteAdminProduct
+    getSearchedAdminProduct,
+    deleteAdminProduct,
+    getSearchedAdminCategoryProduct,
+    countAdminProduct
 }

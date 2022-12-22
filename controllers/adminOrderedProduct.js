@@ -12,8 +12,21 @@ const getAdminOrderedProduct = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+const countAdminOrder=async(req,res)=>{
+    try {
+   const c=await     adminOrderedProduct_Model.countDocuments({})
+            // console.log(c)
+        res.status(200).json(c);
+           
+      
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({ message: error.message });
+    }
+   
+}
 const addAdminOrderedProduct = async (req, res) => {
-    console.log("Reached")
+    // console.log(req.body)
     const { fname,
         lname,
         email,
@@ -31,6 +44,8 @@ length,
 material,
 weight,
 stocks,
+img, 
+customerEmail
     } = req.body;
 
     const adminOrderedProduct = new adminOrderedProduct_Model({ fname,
@@ -49,18 +64,37 @@ stocks,
         length,
         material,
         weight,
-        stocks, })
+        stocks,
+        img, 
+        customerEmail })
 
     try {
         await adminOrderedProduct.save();
-console.log("saved")
+// console.log("saved")
+console.log(adminOrderedProduct_Model)
         res.status(201).json(adminOrderedProduct_Model );
     } catch (error) {
         console.log(error)
         res.status(409).json({ message: error.message });
     }
 }
+const getCustomerOrdered = async (req, res) => {
+    try {
+        console.log(req.params.customerEmail)
+        const adminOrderedProduct = await adminOrderedProduct_Model.find({
+            customerEmail:req.params.customerEmail
+        });
+                
+        res.status(200).json(adminOrderedProduct);
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({ message: error.message });
+    }   
+}
+
 module.exports={
     getAdminOrderedProduct,
-    addAdminOrderedProduct
+    addAdminOrderedProduct,
+    countAdminOrder,
+    getCustomerOrdered
 }

@@ -15,19 +15,19 @@ const productSchema = new mongoose.Schema({
   },
   weight:{
     type:String,
-    required:true,
+    required:false,
   },
   length:{
     type:String,
-    required:true,
+    required:false,
   },
   diameter:{
     type:String,
-    required:true,
+    required:false,
   },
   material:{
     type:String,
-    required:true
+    required:false
   },
   color:{
     type:String,

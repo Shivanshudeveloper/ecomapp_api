@@ -110,6 +110,9 @@ router.delete('/deleteproduct/:proId/:userId',productController.deleteProduct);
 router.post('/addAdminProduct',adminProductController.addAdminProduct);
 router.get('/getAdminProduct/:proId/:adminId',adminProductController.getAdminProduct);
 router.get('/getallAdminProducts/:adminId',adminProductController.getAllAdminProducts);
+router.get('/countAdminProduct',adminProductController.countAdminProduct);
+router.get('/getSearchedAdminProduct/:adminId/:search',adminProductController.getSearchedAdminProduct);
+router.get('/getSearchedAdminCategoryProduct/:adminId/:search/:category',adminProductController.getSearchedAdminCategoryProduct);
 router.get('/getallAdminProductsOfCategory/:adminId/:category/:name',adminProductController.getAllProdOfACategory);
 router.put('/updateAdminProduct/:proId/:adminId',adminProductController.updateAdminProduct);
 router.delete('/deleteAdminProduct/:proId/:adminId',adminProductController.deleteAdminProduct);
@@ -125,11 +128,16 @@ router.delete('/deletecategory/:catId/:userId',categoryController.deleteCategory
 //adminOrdered
 router.post('/addAdminOrderedProduct',adminOrderedProductController.addAdminOrderedProduct);
 router.get('/getAdminOrderedProduct',adminOrderedProductController.getAdminOrderedProduct);
+router.get('/getCustomerOrdered/:customerEmail',adminOrderedProductController.getCustomerOrdered);
+router.get('/countAdminOrder',adminOrderedProductController.countAdminOrder);
 
 
 //customer 
 router.post('/CustomerRegister',CustomerController.Customerregister);
 router.post('/CustomerLogin',CustomerController.Customerlogin);
+router.post('/updateInfo/:email',CustomerController.updateInfo);
+router.post('/changePassword/:email',CustomerController.changePassword);
+router.get('/getName/:email',CustomerController.getName);
 
 //owner
 router.post('/OwnerLogin',OwnerController.Ownerlogin);

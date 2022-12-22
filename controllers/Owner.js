@@ -5,8 +5,8 @@ const Owner = require('../models/owner');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 Ownerregister = async (req, res) => { 
-    console.log(req.body)
-	console.log("fjdm")
+    // console.log(req.body)
+	// console.log("fjdm")
 	const newPassword = await bcrypt.hash(req.body.password, 10)
 	
 	const newOwner= new Owner({
@@ -16,7 +16,7 @@ Ownerregister = async (req, res) => {
 	})
 	console.log(newPassword)
 	try { 
-		console.log(newOwner)
+		// console.log(newOwner)
 		await newOwner.save();
 		res.status(201).json(Owner);
 	} catch (err) {

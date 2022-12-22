@@ -52,21 +52,29 @@ description:{
 }, 
 diameter:{
   type:String,
-  required: true,
+  required: false,
 }, 
 length:{
   type:String,
-  required: true,
+  required: false,
 }, 
 material:{
   type:String,
-  required: true,
+  required: false,
 }, 
 weight:{
+  type:String,
+  required: false,
+}, 
+img:{
   type:String,
   required: true,
 }, 
 stocks:{
+  type:String,
+  required: true,
+},
+customerEmail:{
   type:String,
   required: true,
 }
