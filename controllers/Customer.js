@@ -10,7 +10,8 @@ Customerregister = async (req, res) => {
 	const newPassword = await bcrypt.hash(req.body.password, 10)
 	
 	const newCustomer= new Customer({
-		fname: req.body.name,
+		fname: req.body.fname,
+		lname: req.body.lname,
 		email: req.body.email,
 		password: newPassword,
 	})

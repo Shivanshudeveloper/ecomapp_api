@@ -1,16 +1,16 @@
 const express = require('express');
 require('dotenv').config();
 const router = express.Router();
-require('dotenv').config();
+
+// B2C_Controllers
+const customerB2Ccontroller = require('../controllers/customerCartB2C')
+
+
+
 
 // Controllers
 const checkoutController = require('../controllers/checkout');
 const requestController = require('../controllers/request');
-
-
-
-
-
 
 
 
@@ -34,6 +34,7 @@ const adminProductController = require('../controllers/adminProduct');
 const adminOrderedProductController = require('../controllers/adminOrderedProduct');
 const CustomerController =require('../controllers/Customer');
 const OwnerController =require('../controllers/Owner');
+
 
 router.get('/test', (req, res) => {
   res.send('Working');
@@ -102,6 +103,8 @@ router.put('/updateuser', usersController.updateUserData);
 //-- Product-------
 router.post('/addproduct',productController.addProduct);
 router.get('/getproduct/:proId/:userId',productController.getProduct);
+router.get('/getallproducts',productController.getAllProductsNoFilter);
+router.get('/search',productController.getAllProductsByName);
 router.get('/getallproducts/:userId',productController.getAllProducts);
 router.put('/updateproduct/:proId/:userId',productController.updateProduct);
 router.delete('/deleteproduct/:proId/:userId',productController.deleteProduct);
@@ -120,7 +123,8 @@ router.delete('/deleteAdminProduct/:proId/:adminId',adminProductController.delet
 //---Category---
 router.post('/addcategory',categoryController.addCategory);
 router.get('/getcategory/:catId/:userId',categoryController.getCategory);
-router.get('/getallcategories/:userId',categoryController.getAllCategories);
+router.get('/getallcategories/:userId',categoryController.getAllCategoriesByUser);
+router.get('/getallcategories',categoryController.getAllCategories);
 router.put('/updatecategory/:catId/:userId',categoryController.updateCategory);
 router.delete('/deletecategory/:catId/:userId',categoryController.deleteCategory);
 
@@ -138,6 +142,12 @@ router.post('/CustomerLogin',CustomerController.Customerlogin);
 router.post('/updateInfo/:email',CustomerController.updateInfo);
 router.post('/changePassword/:email',CustomerController.changePassword);
 router.get('/getName/:email',CustomerController.getName);
+
+//customerB2C
+router.get('/cartItems/:uid', customerB2Ccontroller.getCartItems);
+router.get('/prodCartStatus/:uid/:product_code', customerB2Ccontroller.productCartStatus);
+router.post('/addItemToCart', customerB2Ccontroller.addCartItem);
+router.delete('/removeItem/:uid/:productId', customerB2Ccontroller.removeCartItem);
 
 //owner
 router.post('/OwnerLogin',OwnerController.Ownerlogin);
